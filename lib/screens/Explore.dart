@@ -1,7 +1,14 @@
 //this will be page for explore screen
 // this page  number will be according to screen number and relates pages also
 //screen-1
+import 'package:avaride2/Data/FObjectsData.dart';
+import 'package:avaride2/Data/MakersData.dart';
+import 'package:avaride2/Data/StateData.dart';
+import 'package:avaride2/Data/TourData.dart';
+import 'package:avaride2/componets/FObjectsCard.dart';
 import 'package:avaride2/componets/Featuredbox.dart';
+import 'package:avaride2/componets/MakersCard.dart';
+import 'package:avaride2/componets/StateCard.dart';
 import 'package:avaride2/componets/TourCard.dart';
 import 'package:avaride2/componets/locationalter.dart';
 import 'package:avaride2/componets/search.dart';
@@ -55,7 +62,9 @@ class _ExploreState extends State<Explore> {
                       taps: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Details()),
+                          MaterialPageRoute(builder: (context) => Details(
+                            name: "Victoria Memorial Kolkata",
+                          )),
                         );
                       },
                     ),
@@ -69,7 +78,7 @@ class _ExploreState extends State<Explore> {
                     ),
                     //tour
                     Padding(
-                      padding: const EdgeInsets.all(9.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -80,7 +89,12 @@ class _ExploreState extends State<Explore> {
                           ),),
                           GestureDetector(
                             onTap: (){
-                              //Navigator.pushNamed(context, '/Brands');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Details(
+                                  name:" tours",
+                                )),
+                              );
                             },
                             child: Text(
                               'See more',
@@ -95,21 +109,194 @@ class _ExploreState extends State<Explore> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 9,),
                     Container(
+                      padding: EdgeInsets.all(5),
                       height: 200,
-                      color: kTryColor,
-                      width: 350,
-                      child: TourCard(),
+                      // this is function that make scroll list
+                      child: ListView.builder(
+                        itemCount: tours.length ,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context,int index)=>TourCard(
+                          tourData: tours[index],
+                          taps: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Details(
+                                name:" tours",
+                              )),
+                            );
+                          },
+                        )
+
+                      ),
                     ),
-                    SizedBox(height: 9,),
+                    SizedBox(height: 20,),
+                    //Feature objects
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Featured', style: TextStyle(
+                            fontSize: 20,
+                            color: kTextColor,
+                            fontWeight: FontWeight.bold,
+                          ),),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Details(
+                                  name:" f objects",
+                                )),
+                              );
+                            },
+                            child: Text(
+                              'See more',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.0,
+                                color: kTextColorD,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     Container(
+                      padding: EdgeInsets.all(5),
                       height: 200,
-                      color: kTryColor,
-                      width: 350,
-                      child: TourCard(),
+                      // this is function that make scroll list
+                      child: ListView.builder(
+                          itemCount: objects.length ,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context,int index)=>FObjectsCard(
+                              fObjectsData: objects[index],
+                              taps:(){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Details(
+                                    name:" f objects",
+                                  )),
+                                );
+                              }
+                          )
+
+                      ),
                     ),
-                    SizedBox(height: 9,),
+                    SizedBox(height: 20,),
+                    //Artists
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Historical Personalities', style: TextStyle(
+                            fontSize: 20,
+                            color: kTextColor,
+                            fontWeight: FontWeight.bold,
+                          ),),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Details(
+                                  name:"Historians",
+                                )),
+                              );
+                            },
+                            child: Text(
+                              'See more',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.0,
+                                color: kTextColorD,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      height: 180,
+                      // this is function that make scroll list
+                      child: ListView.builder(
+                          itemCount: make.length ,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context,int index)=>MakersCard(
+                              makersData: make[index],
+                              taps:(){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Details(
+                                    name:"Historians",
+                                  )),
+                                );
+                              }
+                          )
+
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                    //States
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('States', style: TextStyle(
+                            fontSize: 20,
+                            color: kTextColor,
+                            fontWeight: FontWeight.bold,
+                          ),),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Details(
+                                  name: "States",
+                                )),
+                              );
+                            },
+                            child: Text(
+                              'See more',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.0,
+                                color: kTextColorD,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      height: 200,
+                      // this is function that make scroll list
+                      child: ListView.builder(
+                          itemCount: states.length ,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context,int index)=>StateCard(
+                              stateData: states[index],
+                              taps:(){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Details(
+                                    name: "State",
+                                  )),
+                                );
+                              }
+                          )
+
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+
 
 
 

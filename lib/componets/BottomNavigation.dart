@@ -72,6 +72,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: 'Scan',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Shop',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
             label: 'Account',
           )
